@@ -3,7 +3,7 @@
 [![VMware](https://img.shields.io/badge/VMware-17.6.4-green.svg)](https://www.vmware.com/)
 [![Gentoo](https://img.shields.io/badge/Gentoo-Supported-purple.svg)](https://www.gentoo.org/)
 
-### ⚡ VMware Workstation Modules for Linux Kernel 6.16.x & 6.17.x & 6.18.x
+### ⚡ VMware Workstation Modules for Linux Kernel 6.16.x, 6.17.x & 6.18.x
 ### 🐍 **Interactive Python Wizard** that guides you through installation
 ### 🚀 **Enjoy 20-35% faster VMware performance**
 ### ✨ **Better Wayland integration - top bar hiding works ~90% of the time**
@@ -48,7 +48,7 @@ sudo ./scripts/install-vmware-modules.sh
 
 ### 🐍 **Interactive Python Wizard**
 - **Beautiful terminal UI** using Rich library
-- **Auto-detects all installed kernels** (6.16.x & 6.17.x & 6.18.x)
+- **Auto-detects all installed kernels** (6.16.x, 6.17.x & 6.18.x)
 - **Smart defaults:** Current kernel + Optimized mode
 - Multi-kernel selection or "all at once"
 - **All interaction in unified Python UI** - no more bash prompts!
@@ -303,7 +303,7 @@ This project includes patches from [ngodn/vmware-vmmon-vmnet-linux-6.16.x](https
 
 ## 📋 Prerequisites
 
-- Linux kernel **6.16.x or 6.17.x or 6.18.x** headers installed
+- Linux kernel **6.16.x, 6.17.x or 6.18.x** headers installed
 - VMware Workstation **17.x** installed
 - Build essentials: `gcc`, `make`, `kernel headers`
 - Git (for cloning)
