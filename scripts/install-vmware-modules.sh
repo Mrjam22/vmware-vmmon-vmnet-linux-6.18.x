@@ -1,5 +1,5 @@
 #!/bin/bash
-# Enhanced script to compile VMware modules for kernel 6.16.x and 6.17.x
+# Enhanced script to compile VMware modules for kernel 6.16.x, 6.17.x and 6.18.x
 # Supports Ubuntu, Fedora, and Gentoo
 # Uses specific patches according to kernel version
 # Optional hardware-specific optimizations
@@ -343,6 +343,8 @@ else
                         TARGET_KERNEL="6.16"
                     elif [ "$FIRST_KERNEL_MINOR" = "17" ]; then
                         TARGET_KERNEL="6.17"
+					elif [ "$FIRST_KERNEL_MINOR" = "18" ]; then
+                        TARGET_KERNEL="6.18"
                     else
                         error "Unsupported kernel minor version: $FIRST_KERNEL_MINOR"
                         warning "Falling back to legacy installation mode..."
@@ -493,6 +495,10 @@ echo -e "${GREEN}  2)${NC} Kernel 6.17.x"
 echo "     • Uses patches from 6.16.x + additional objtool patches"
 echo "     • Additional patches: OBJECT_FILES_NON_STANDARD, returns in void functions"
 echo ""
+echo -e "${GREEN}  2)${NC} Kernel 6.18.x"
+echo "     • Uses patches from 6.16.x + additional objtool patches"
+echo "     • Additional patches: OBJECT_FILES_NON_STANDARD, returns in void functions"
+echo ""
 echo -e "${BLUE}Kernel detected on your system:${NC} $(uname -r)"
 echo ""
 
@@ -510,8 +516,13 @@ while true; do
             info "Selected: Kernel 6.17.x"
             break
             ;;
+		3)
+            TARGET_KERNEL="6.18"
+            info "Selected: Kernel 6.18.x"
+            break
+            ;;
         *)
-            warning "Invalid option. Please select 1 or 2."
+            warning "Invalid option. Please select 1,2 or 3."
             ;;
     esac
 done
