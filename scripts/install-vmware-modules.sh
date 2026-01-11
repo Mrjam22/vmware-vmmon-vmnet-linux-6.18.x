@@ -144,7 +144,7 @@ trap cleanup_on_error ERR
 
 echo -e "${HYPHAED_GREEN}$(draw_box_top)${NC}"
 echo -e "${HYPHAED_GREEN}$(draw_box_line "")${NC}"
-echo -e "${HYPHAED_GREEN}$(draw_box_line "VMWARE MODULES COMPILER FOR KERNEL 6.16/6.17")${NC}"
+echo -e "${HYPHAED_GREEN}$(draw_box_line "VMWARE MODULES COMPILER FOR KERNEL 6.16/6.17/6.18")${NC}"
 echo -e "${HYPHAED_GREEN}$(draw_box_line "(Multi-Distribution Linux Compatible)")${NC}"
 echo -e "${HYPHAED_GREEN}$(draw_box_line "")${NC}"
 echo -e "${HYPHAED_GREEN}$(draw_box_bottom)${NC}"
