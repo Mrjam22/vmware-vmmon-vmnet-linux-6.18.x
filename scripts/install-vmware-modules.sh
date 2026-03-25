@@ -509,7 +509,7 @@ echo -e "${GREEN}  2)${NC} Kernel 6.17.x"
 echo "     • Uses patches from 6.16.x + additional objtool patches"
 echo "     • Additional patches: OBJECT_FILES_NON_STANDARD, returns in void functions"
 echo ""
-echo -e "${GREEN}  2)${NC} Kernel 6.18.x"
+echo -e "${GREEN}  3)${NC} Kernel 6.18.x"
 echo "     • Uses patches from 6.16.x + additional objtool patches"
 echo "     • Additional patches: OBJECT_FILES_NON_STANDARD, returns in void functions"
 echo ""
@@ -518,7 +518,7 @@ echo ""
 
 # Ask for kernel version
 while true; do
-    read -p "Which kernel version do you want to compile for? (1=6.16 / 2=6.17): " KERNEL_CHOICE
+    read -p "Which kernel version do you want to compile for? (1=6.16 / 2=6.17 / 3=6.18 / 4=6.19): " KERNEL_CHOICE
     case $KERNEL_CHOICE in
         1)
             TARGET_KERNEL="6.16"
