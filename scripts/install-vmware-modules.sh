@@ -309,11 +309,23 @@ else
             export CONDA_PREFIX="$MINIFORGE_DIR/envs/$ENV_NAME"
             export PATH="$MINIFORGE_DIR/envs/$ENV_NAME/bin:$PATH"
         fi
+
+        # Disable error trap temporarily so wizard failures trigger the fallback
+        trap - ERR
+
+        # Temporarily disable exit-on-error so a wizard crash doesn't kill the script
+        set +e
         
         # Run the wizard with selected Python
         "$WIZARD_PYTHON" "$WIZARD_SCRIPT"
         WIZARD_EXIT_CODE=$?
         
+        # Re-enable exit-on-error
+        set -e
+
+        # Re-enable error trap for the rest of the script
+        trap cleanup_on_error ERR
+
         if [ $WIZARD_EXIT_CODE -eq 0 ]; then
             log "Wizard completed successfully"
             USE_WIZARD=true
