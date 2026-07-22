@@ -144,7 +144,7 @@ trap cleanup_on_error ERR
 
 echo -e "${HYPHAED_GREEN}$(draw_box_top)${NC}"
 echo -e "${HYPHAED_GREEN}$(draw_box_line "")${NC}"
-echo -e "${HYPHAED_GREEN}$(draw_box_line "VMWARE MODULES COMPILER FOR KERNEL 6.16/6.17/6.18/6.19")${NC}"
+echo -e "${HYPHAED_GREEN}$(draw_box_line "VMWARE MODULES COMPILER FOR KERNEL 6.16/6.17/6.18/6.19/7.0/7.1")${NC}"
 echo -e "${HYPHAED_GREEN}$(draw_box_line "(Multi-Distribution Linux Compatible)")${NC}"
 echo -e "${HYPHAED_GREEN}$(draw_box_line "")${NC}"
 echo -e "${HYPHAED_GREEN}$(draw_box_bottom)${NC}"
@@ -347,6 +347,10 @@ else
                         TARGET_KERNEL="6.18"
                     elif [ "$FIRST_KERNEL_MINOR" = "19" ]; then
                         TARGET_KERNEL="6.19"
+                    elif [ "$FIRST_KERNEL_MINOR" = "0" ]; then
+                        TARGET_KERNEL="7.0"
+                    elif [ "$FIRST_KERNEL_MINOR" = "1" ]; then
+                        TARGET_KERNEL="7.1"
                     else
                         error "Unsupported kernel minor version: $FIRST_KERNEL_MINOR"
                         warning "Falling back to legacy installation mode..."
@@ -500,13 +504,22 @@ echo ""
 echo -e "${GREEN}  2)${NC} Kernel 6.18.x"
 echo "     • Uses patches from 6.16.x + additional objtool patches"
 echo "     • Additional patches: OBJECT_FILES_NON_STANDARD, returns in void functions"
+echo -e "${GREEN}  2)${NC} Kernel 6.19.x"
+echo "     • Uses patches from 6.16.x + additional objtool patches"
+echo "     • Additional patches: OBJECT_FILES_NON_STANDARD, returns in void functions"
+echo -e "${GREEN}  2)${NC} Kernel 7.0.x"
+echo "     • Uses patches from 6.16.x + additional objtool patches"
+echo "     • Additional patches: OBJECT_FILES_NON_STANDARD, returns in void functions"
+echo -e "${GREEN}  2)${NC} Kernel 7.1.x"
+echo "     • Uses patches from 6.16.x + additional objtool patches"
+echo "     • Additional patches: OBJECT_FILES_NON_STANDARD, returns in void functions"
 echo ""
 echo -e "${BLUE}Kernel detected on your system:${NC} $(uname -r)"
 echo ""
 
 # Ask for kernel version
 while true; do
-    read -p "Which kernel version do you want to compile for? (1=6.16 / 2=6.17): " KERNEL_CHOICE
+    read -p "Which kernel version do you want to compile for? (1=6.16 / 2=6.17 / 3=6.18 / 4=6.19 / 5=7.0 / 6=7.1): " KERNEL_CHOICE
     case $KERNEL_CHOICE in
         1)
             TARGET_KERNEL="6.16"
@@ -528,8 +541,18 @@ while true; do
             info "Selected: Kernel 6.19.x"
             break
             ;;
+        5)
+            TARGET_KERNEL="7.0"
+            info "Selected: Kernel 7.0"
+            break
+            ;;
+        6)
+            TARGET_KERNEL="7.1"
+            info "Selected: Kernel 7.1"
+            break
+            ;;
         *)
-            warning "Invalid option. Please select 1,2, 3 or 4."
+            warning "Invalid option. Please select 1,2, 3, 4, 5 or 6."
             ;;
     esac
 done
