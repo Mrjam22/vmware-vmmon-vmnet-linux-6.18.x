@@ -3,7 +3,7 @@
 [![VMware](https://img.shields.io/badge/VMware-17.6.4-green.svg)](https://www.vmware.com/)
 [![Gentoo](https://img.shields.io/badge/Gentoo-Supported-purple.svg)](https://www.gentoo.org/)
 
-### ⚡ VMware Workstation Modules for Linux Kernel 6.16.x, 6.17.x, 6.18.x & 6.19.x
+### ⚡ VMware Workstation Modules for Linux Kernel 6.16.x, 6.17.x, 6.18.x, 6.19.x, 7.0 & 7.1
 ### 🐍 **Interactive Python Wizard** that guides you through installation
 ### 🚀 **Enjoy 20-35% faster VMware performance**
 ### ✨ **Better Wayland integration - top bar hiding works ~90% of the time**
