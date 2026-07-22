@@ -13,6 +13,7 @@ import time
 from dataclasses import dataclass, asdict
 from typing import List, Dict, Optional
 from pathlib import Path
+import re
 
 # Import our custom UI library
 sys.path.insert(0, str(Path(__file__).parent))
@@ -59,23 +60,24 @@ class VMwareWizard:
             
             full_version = kernel_dir.name
             
-            # Parse version
+            # Parse version using regex to safely extract numbers only
             try:
-                version_parts = full_version.split('-')[0].split('.')
-                major = int(version_parts[0])
-                minor = int(version_parts[1]) if len(version_parts) > 1 else 0
-                patch = int(version_parts[2]) if len(version_parts) > 2 else 0
+                # Matches patterns like 6.18.12, 6.18.0, 6.18, 6.18.12+kali etc.
+                match = re.search(r'^(\d+)\.(\d+)(?:\.(\d+))?', full_version)
+                if not match:
+                    continue
+                
+                major = int(match.group(1))
+                minor = int(match.group(2)) if match.group(2) else 0
+                patch = int(match.group(3)) if match.group(3) else 0
                 version = f"{major}.{minor}"
             except (ValueError, IndexError):
                 continue
             
+
             # Check if supported (6.16 or 6.17)
             supported = (major in  [6,7] and minor in [16,17,18,19,0, 1])
 
-            print(major)
-
-            print(minor)
-            
             # Check for headers
             headers_path = kernel_dir / "build"
             headers_installed = headers_path.exists() and headers_path.is_dir()

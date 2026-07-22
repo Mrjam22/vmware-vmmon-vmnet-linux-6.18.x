@@ -29,7 +29,7 @@ This project provides:
 
 ```bash
 # Clone repository
-git clone https://github.com/Hyphaed/vmware-vmmon-vmnet-linux-6.17.x.git
+git clone https://github.com/Mrjam22/vmware-vmmon-vmnet-linux-6.18.x
 cd vmware-vmmon-vmnet-linux-6.17.x
 
 # Run installation (Python wizard handles everything)
@@ -350,6 +350,7 @@ See [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) for common issues and sol
 
 ## 🙏 Credits
 
+- Forked from https://github.com/Hyphaed/vmware-vmmon-vmnet-linux-6.17.x.git
 - Includes patches from [ngodn/vmware-vmmon-vmnet-linux-6.16.x](https://github.com/ngodn/vmware-vmmon-vmnet-linux-6.16.x)
 - Thanks to all VMware community, linux users for continuous feedback, testing and bug reports
 

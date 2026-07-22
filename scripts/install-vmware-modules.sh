@@ -309,11 +309,23 @@ else
             export CONDA_PREFIX="$MINIFORGE_DIR/envs/$ENV_NAME"
             export PATH="$MINIFORGE_DIR/envs/$ENV_NAME/bin:$PATH"
         fi
+
+        # Disable error trap temporarily so wizard failures trigger the fallback
+        trap - ERR
+
+        # Temporarily disable exit-on-error so a wizard crash doesn't kill the script
+        set +e
         
         # Run the wizard with selected Python
         "$WIZARD_PYTHON" "$WIZARD_SCRIPT"
         WIZARD_EXIT_CODE=$?
         
+        # Re-enable exit-on-error
+        set -e
+
+        # Re-enable error trap for the rest of the script
+        trap cleanup_on_error ERR
+
         if [ $WIZARD_EXIT_CODE -eq 0 ]; then
             log "Wizard completed successfully"
             USE_WIZARD=true
@@ -501,7 +513,7 @@ echo -e "${GREEN}  2)${NC} Kernel 6.17.x"
 echo "     • Uses patches from 6.16.x + additional objtool patches"
 echo "     • Additional patches: OBJECT_FILES_NON_STANDARD, returns in void functions"
 echo ""
-echo -e "${GREEN}  2)${NC} Kernel 6.18.x"
+echo -e "${GREEN}  3)${NC} Kernel 6.18.x"
 echo "     • Uses patches from 6.16.x + additional objtool patches"
 echo "     • Additional patches: OBJECT_FILES_NON_STANDARD, returns in void functions"
 echo -e "${GREEN}  2)${NC} Kernel 6.19.x"
@@ -519,7 +531,9 @@ echo ""
 
 # Ask for kernel version
 while true; do
+
     read -p "Which kernel version do you want to compile for? (1=6.16 / 2=6.17 / 3=6.18 / 4=6.19 / 5=7.0 / 6=7.1): " KERNEL_CHOICE
+
     case $KERNEL_CHOICE in
         1)
             TARGET_KERNEL="6.16"
